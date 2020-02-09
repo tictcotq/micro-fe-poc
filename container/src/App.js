@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import MicroFrontend from './components/MicroFrontend'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const {
+  REACT_APP_BROWSE_HOST: browseHost,
+  // REACT_APP_RESTAURANT_HOST: restaurantHost,
+} = process.env;
+
+const Browse = () => 
+  <>
+    <h1>Look around:</h1>
+    <ul>
+      <li>
+        <Link to='/moduleA'>Module A</Link>
+      </li>
+      <li>
+        <Link to='/moduleB'>Module B</Link>
+      </li>
+    </ul>
+  </>
+
+const ModuleA = ({history}) => 
+  <MicroFrontend history={history} name="ModuleA" host={browseHost} />
+
+const App = () =>
+  <>
+    <header style={{background: 'red', padding: '2rem'}}>Demo app</header>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Browse} />
+        <Route exact path="/moduleA" component={ModuleA} /> 
+        {/* <Route exact path="/moduleB" render={Random} /> */}
+      </Switch>
+    </Router>
+  </>
 
 export default App;
