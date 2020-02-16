@@ -6,8 +6,10 @@ module.exports = (config, env) => {
     },
   };
   config.externals = {
-    react: 'React',
+    'react': 'React',
     'react-dom': 'ReactDOM',
+    'redux': 'Redux',
+    'react-redux': 'ReactRedux'
   }
   return config;
 };
