@@ -1,0 +1,5 @@
+{
+  "env": {
+    "REACT_APP_CONTENT_HOST": "@react_app_content_host"
+  }
+}
