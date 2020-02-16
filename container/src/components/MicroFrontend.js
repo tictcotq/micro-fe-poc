@@ -1,6 +1,10 @@
 import React from 'react';
 
 class MicroFrontend extends React.Component {
+  state = {
+    loaded: false
+  }
+
   componentDidMount() {
     const { name, host, document } = this.props;
     const scriptId = `micro-frontend-script-${name}`;
@@ -26,17 +30,27 @@ class MicroFrontend extends React.Component {
   componentWillUnmount() {
     const { name, window } = this.props;
 
-    window[`unmount${name}`](`${name}-container`);
+    // window[`unmount${name}`](`${name}-container`);
   }
 
   renderMicroFrontend = () => {
-    const { name, window, history } = this.props;
+    const { name, window, history, text } = this.props;
 
-    window[`render${name}`](`${name}-container`, history);
+    // window[`render${name}`](`${name}-container`, history, text);
+    // debugger
+    this.setState({loaded: true})
   };
 
   render() {
-    return <main id={`${this.props.name}-container`} />;
+    if (this.state.loaded) {
+      const Comp = window[`render${this.props.name}`]
+      return <main id={`${this.props.name}-container`}>
+          {this.state.loaded && React.cloneElement(Comp(), {text: this.props.text})}
+        </main>
+    }
+
+    return null
+    
   }
 }
 

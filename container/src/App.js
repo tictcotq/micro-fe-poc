@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import MicroFrontend from './components/MicroFrontend'
 
@@ -20,19 +20,25 @@ const Browse = () =>
     </ul>
   </>
 
-const ModuleA = ({history}) => 
-  <MicroFrontend history={history} name="ModuleA" host={browseHost} />
+const ModuleA = ({history, text}) => 
+  <MicroFrontend history={history} text={text} name="ModuleA" host={browseHost} />
 
-const App = () =>
-  <>
-    <header style={{background: 'red', padding: '2rem'}}>Demo app</header>
+const App = () => {
+  const [text, setText] = useState('initial')
+
+  return <>
+    <header style={{background: 'red', padding: '2rem'}}>
+      Demo app
+      <input value={text} onChange={({target: {value}}) => setText(value)}/>
+    </header>
     <Router>
       <Switch>
         <Route exact path="/" component={Browse} />
-        <Route exact path="/moduleA" component={ModuleA} /> 
+        <Route exact path="/moduleA"><ModuleA text={text}/></Route>
         {/* <Route exact path="/moduleB" render={Random} /> */}
       </Switch>
     </Router>
   </>
+}
 
 export default App;
