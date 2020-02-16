@@ -133,15 +133,15 @@ const restaurants = [
   },
 ];
 
-fs.writeFileSync('./content/restaurants.json', JSON.stringify(restaurants));
+fs.writeFileSync('./public/restaurants.json', JSON.stringify(restaurants));
 try {
-  fs.mkdirSync('./content/restaurants');
+  fs.mkdirSync('./public/restaurants');
 } catch (e) {
   if (e.code !== 'EEXIST') throw e;
 }
 restaurants.forEach(restaurant => {
   fs.writeFileSync(
-    `./content/restaurants/${restaurant.id}.json`,
+    `./public/restaurants/${restaurant.id}.json`,
     JSON.stringify(restaurant),
   );
 });
