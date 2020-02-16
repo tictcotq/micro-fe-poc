@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import MicroFrontend from './components/MicroFrontend'
 
 const {
-  REACT_APP_BROWSE_HOST: browseHost,
-  // REACT_APP_RESTAURANT_HOST: restaurantHost,
+  REACT_APP_MODULE_A_HOST,
 } = process.env;
 
 const Browse = () => 
@@ -21,7 +20,7 @@ const Browse = () =>
   </>
 
 const ModuleA = ({history, text}) => 
-  <MicroFrontend history={history} text={text} name="ModuleA" host={browseHost} />
+  <MicroFrontend history={history} text={text} name="ModuleA" host={REACT_APP_MODULE_A_HOST} />
 
 const App = () => {
   const [text, setText] = useState('initial')
@@ -35,7 +34,6 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Browse} />
         <Route exact path="/moduleA"><ModuleA text={text}/></Route>
-        {/* <Route exact path="/moduleB" render={Random} /> */}
       </Switch>
     </Router>
   </>

@@ -1,5 +1,8 @@
 {
-  "env": {
-    "REACT_APP_CONTENT_HOST": "@react_app_content_host"
+  "build": {
+    "env": {
+      "REACT_APP_CONTENT_HOST": "@react_app_content_host",
+      "REACT_APP_MODULE_A_HOST": "@react_app_module_a_host"
+    }
   }
 }

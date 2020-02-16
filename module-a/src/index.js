@@ -4,13 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-window.renderModuleA = (containerId, history) => {
-    ReactDOM.render(
-        <App history={history} />,
-        document.getElementById(containerId),
-    );
-    serviceWorker.unregister();
-};
+window.renderModuleA = (history) => {
+    // debugger
+    // ReactDOM.render(
+        return <App history={history}/>
+        // document.getElementById(containerId),
+    // );
+    // serviceWorker.unregister();
+}
   
 window.unmountModuleA = containerId => {
     ReactDOM.unmountComponentAtNode(document.getElementById(containerId));
